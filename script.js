@@ -10,7 +10,7 @@ function addTask(e) {
   ol.innerHTML += `
     <li>
     <div class="clear-element"">
-        <input type="checkbox">
+        <input type="checkbox" class="check-btn">
         <input type="text" value="${inputField.value}" id="task-field" readonly >
         <div class="float-right">  
             <button type="button" class="edit-button">Edit</button>
@@ -21,8 +21,9 @@ function addTask(e) {
     
     </li>`;
   
-  // register edit from new element with event listener
+  // register buttons from new element with event listener
   addEditsBtnsToEventListener();
+  addChecksToEventListener();
 }
 
 function delTask(id) {
@@ -60,6 +61,21 @@ function addEditsBtnsToEventListener() {
   });
 }
 
+function addChecksToEventListener() {
+  let checkBtns = document.querySelectorAll(".check-btn");
+  checkBtns.forEach((elem) => {
+    elem.addEventListener("click", (e) => {
+      let inField = e.target.nextSibling.nextSibling;
+      if (e.target.checked == true) {
+        inField.style.color = 'grey';
+      } else {
+        inField.style.color = 'black';
+      }
+    })
+  })
+}
+
 form.addEventListener("submit", addTask);
 // del_button.addEventListener("click",delTask)
 addEditsBtnsToEventListener();
+addChecksToEventListener();
