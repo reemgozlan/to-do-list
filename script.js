@@ -7,27 +7,36 @@ const editBtns = document.querySelectorAll(".edit-button");
 
 function addTask(e) {
   e.preventDefault();
-  console.log(e)
-  console.log(e.submitter)
   ol.innerHTML += `
     <li>
     <div class="clear-element"">
         <input type="checkbox">
-        <input type="text" value="${inputField.value}" id="task-field" readonly >  
-        <div class="float-right">
-            <button type="button">Edit</button>
+        <input type="text" value="${inputField.value}" id="task-field" readonly >
+        <div class="float-right">  
+            <button type="button" class="edit-button">Edit</button>
             <button type="submit">Delete</button>
         </div>
     
     </div>
     
-    </li>
-`;
+    </li>`;
+  
+  ol.lastChild.querySelector(".edit-button")
+  .addEventListener("click", (e) => {
+    if (e.target.innerHTML === "Save") {
+      saveChanges(e);
+    } else {
+      editTask(e);
+    }
+  });
+
 }
-function delTask(id){
-console.log('hello')
-task  = document.getElementById(id)
-console.log(task)
+
+function delTask(id) {
+  console.log("hello");
+  task = document.getElementById(id);
+  console.log(task);
+  task.remove();
 task.remove()
 }
 
