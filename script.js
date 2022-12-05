@@ -3,7 +3,6 @@ const button = document.querySelector(".add-button");
 const form = document.querySelector("form");
 const ol = document.querySelector("ol");
 //const del_button = document.getElementById("del")
-const editBtns = document.querySelectorAll(".edit-button");
 
 function addTask(e) {
   e.preventDefault();
@@ -23,15 +22,7 @@ function addTask(e) {
     </li>`;
   
   // register edit from new element with event listener
-  ol.lastChild.querySelector(".edit-button")
-  .addEventListener("click", (e) => {
-    if (e.target.innerHTML === "Save") {
-      saveChanges(e);
-    } else {
-      editTask(e);
-    }
-  });
-
+  addEditsBtnsToEventListener();
 }
 
 function delTask(id) {
@@ -56,14 +47,19 @@ function saveChanges(e) {
   e.target.innerHTML = "Edit";
 }
 
+function addEditsBtnsToEventListener() {
+  let editBtns = document.querySelectorAll(".edit-button");
+  editBtns.forEach((elem) => {
+    elem.addEventListener("click", (e) => {
+      if (e.target.innerHTML === "Save") {
+        saveChanges(e);
+      } else {
+        editTask(e);
+      }
+    });
+  });
+}
+
 form.addEventListener("submit", addTask);
 // del_button.addEventListener("click",delTask)
-editBtns.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    if (e.target.innerHTML === "Save") {
-      saveChanges(e);
-    } else {
-      editTask(e);
-    }
-  });
-});
+addEditsBtnsToEventListener();
