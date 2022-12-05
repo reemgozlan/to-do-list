@@ -6,7 +6,6 @@ const ol = document.querySelector("ol");
 const editBtns = document.querySelectorAll(".edit-button");
 
 function addTask(e) {
-    
   e.preventDefault();
   console.log(e)
   console.log(e.submitter)
