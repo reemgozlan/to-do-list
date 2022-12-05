@@ -7,8 +7,6 @@ const editBtns = document.querySelectorAll(".edit-button");
 
 function addTask(e) {
   e.preventDefault();
-  ol.innerHTML += `
-    <li>
     <div class="clear-element"">
         <input type="checkbox">
         <input type="text" value="${inputField.value}" id="task-field" readonly >
