@@ -7,6 +7,7 @@ const editBtns = document.querySelectorAll(".edit-button");
 
 function addTask(e) {
   e.preventDefault();
+  // add task as new list element
   ol.innerHTML += `
     <li>
     <div class="clear-element"">
@@ -21,6 +22,7 @@ function addTask(e) {
     
     </li>`;
   
+  // register edit from new element with event listener
   ol.lastChild.querySelector(".edit-button")
   .addEventListener("click", (e) => {
     if (e.target.innerHTML === "Save") {
