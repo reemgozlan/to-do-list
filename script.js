@@ -8,30 +8,30 @@ function addTask(e) {
   e.preventDefault();
   // add task as new list element
   ol.innerHTML += `
-    <li>
+    <li class="list-item">
     <div class="clear-element"">
         <input type="checkbox" class="check-btn">
         <input type="text" value="${inputField.value}" id="task-field" readonly >
         <div class="float-right">  
             <button type="button" class="edit-button">Edit</button>
-            <button type="submit">Delete</button>
+            <button type="button" class="delete-button">Delete</button>
         </div>
     
     </div>
     
     </li>`;
-  
+  inputField.value="";
   // register buttons from new element with event listener
   addEditsBtnsToEventListener();
   addChecksToEventListener();
+  addDeleteButtonToEventListner();
 }
 
-function delTask(id) {
-  console.log("hello");
-  task = document.getElementById(id);
-  console.log(task);
-  task.remove();
-task.remove()
+function delTask(e) {
+e.target.closest(".list-item").remove();
+
+  
+
 }
 
 function editTask(e) {
@@ -74,8 +74,18 @@ function addChecksToEventListener() {
     })
   })
 }
+function addDeleteButtonToEventListner(){
+  let deleteButton = document.querySelectorAll(".delete-button");
+  deleteButton.forEach((elem) =>{
+    elem.addEventListener("click", (e) =>{
+      delTask(e);
+
+    })
+  })
+}
 
 form.addEventListener("submit", addTask);
 // del_button.addEventListener("click",delTask)
 addEditsBtnsToEventListener();
 addChecksToEventListener();
+addDeleteButtonToEventListner();
